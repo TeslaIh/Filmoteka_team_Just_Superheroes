@@ -1,7 +1,17 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+//Base
+@import 'base/normalize';
+@import 'base/variables';
+@import 'base/base';
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+// Utils
+@import 'utils/visually-hidden';
+
+// Components
+@import 'components/container';
+
+// Layout
+@import 'layout/header';
+@import 'layout/gallery';
+@import 'layout/pagination';
+@import 'layout/footer';
+@import 'layout/teammates';
