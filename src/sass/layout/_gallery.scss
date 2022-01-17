@@ -2,6 +2,44 @@
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
+    margin-top: 50px;
     margin-bottom: 50px;
+  }
+}
+.card-set {
+
+  @media screen and (min-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+  }
+}
+
+.card-set_img {
+
+  @media screen and (min-width: 768px){
+    width: 274px;
+    height: 398px;
+  }
+}
+
+.card-set_item {
+
+  @media screen and (min-width: 768px){
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.card-set_text {
+
+  @media screen and (min-width: 768px){
+    margin-top: 10px;
+  }
+}
+
+.card-set_genres {
+
+  @media screen and (min-width: 768px){
+    margin-top: 10px;
   }
 }
