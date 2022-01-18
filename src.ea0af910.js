@@ -69,4 +69,4 @@ module.exports=require("./lib/axios");
 },{"./api-service.js":"hC31"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/films-gallery");
 },{"./sass/main.scss":"clu1","./js/films-gallery":"iMX8"}]},{},["Focm"], null)
-//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.b9cf5d59.js.map
+//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.ea0af910.js.map
