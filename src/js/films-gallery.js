@@ -22,13 +22,13 @@ function renderGalleryFilms(array) {
             el.genre_ids.splice(2, el.genre_ids.length);
             el.genre_ids.push('Other');
         };
-        return `<li class='card-set_item'>
-        <img class="card-set_img" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt='film'>
-        <p class="card-set_text">${el.title}</p>
-        <p class="card-set_genres">${el.genre_ids}</p>
+        return `<li class='card-set__item'>
+        <img class="card-set__img" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt='film'>
+        <p class="card-set__text">${el.title}</p>
+        <p class="card-set__genres">${el.genre_ids}</p>
         </li>`
     }).join('');
-}
+};
 
 function getGenresFromLocalStorage() {
     const genres = JSON.parse(localStorage.getItem('GenresArray'));

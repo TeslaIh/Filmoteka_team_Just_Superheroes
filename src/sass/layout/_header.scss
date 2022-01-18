@@ -1,7 +1,51 @@
-.header-section {
+.header {
   margin-bottom: 20px;
+  background-color: $bg-hero;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 60px;
   }
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 46px;
+  padding-bottom: 97px;
+}
+
+.header__logo-link {
+  margin-right: 10px;
+  color: $text-secondary;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    color: $accent-color;
+  }
+}
+
+.header__logo-text {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+  font-size: 30px;
+  line-height: 1.17;
+}
+
+.nav__home,
+.nav__library {
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+
+  color: $text-secondary;
+  background-color: transparent;
+
+  border: none;
+}
+
+.nav__home {
+  margin-right: 39px;
 }
