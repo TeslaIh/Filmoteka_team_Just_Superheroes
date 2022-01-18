@@ -24,8 +24,10 @@ function renderGalleryFilms(array) {
         };
         return `<li class='card-set_item'>
         <img class="card-set_img" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt='film'>
+        <div class="card-set_box">
         <p class="card-set_text">${el.title}</p>
-        <p class="card-set_genres">${el.genre_ids}</p>
+        <p class="card-set_genres">${el.genre_ids.join(", ")} &#124 ${el.release_date.slice(0, 4)}</p>
+        </div>
         </li>`
     }).join('');
 }
