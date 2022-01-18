@@ -6,7 +6,7 @@
   "homepage": "https://teslaih.github.io/Filmoteka_team_Just_Superheroes/",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-project-template/"
+    "build": "parcel build src/*.html --public-url /Filmoteka_team_Just_Superheroes/"
   },
   "repository": {
     "type": "git",
