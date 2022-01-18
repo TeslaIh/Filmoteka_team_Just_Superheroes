@@ -1,4 +1,4 @@
-.gallery-section {
+.gallery {
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
@@ -7,24 +7,21 @@
   }
 }
 .card-set {
-
   @media screen and (min-width: 768px) {
-      display: flex;
-      flex-wrap: wrap;
-      margin-right: calc(-1 * 30px);
-      margin-bottom: calc(-1 * 30px);
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: calc(-1 * 30px);
+    margin-bottom: calc(-1 * 30px);
   }
 }
 
 .card-set_img {
-
     display: block;
     width: 100%;
     height: 398px;
 }
 
 .card-set_item {
-
   @media screen and (min-width: 320px){
     margin-bottom: 20px;
   }
@@ -72,5 +69,6 @@
 
   @media screen and (min-width: 768px){
     line-height: 16px;
+
   }
 }

@@ -30,7 +30,7 @@ function renderGalleryFilms(array) {
         </div>
         </li>`
     }).join('');
-}
+};
 
 function getGenresFromLocalStorage() {
     const genres = JSON.parse(localStorage.getItem('GenresArray'));
