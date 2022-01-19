@@ -5,3 +5,4 @@ import './js/modal';
 import './js/header-bg';
 import './js/themeSwitcher'
 import './js/arrowBtn.js'
+import './js/team-cards';
