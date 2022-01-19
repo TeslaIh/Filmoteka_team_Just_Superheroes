@@ -83,4 +83,4 @@ const o=document.querySelector(".arrow-btn");window.onscroll=function(){window.p
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/films-gallery"),require("./js/my-library"),require("./js/modal"),require("./js/header-bg"),require("./js/themeSwitcher"),require("./js/arrowBtn.js");
 },{"./sass/main.scss":"clu1","./js/films-gallery":"iMX8","./js/my-library":"L1LD","./js/modal":"RSqK","./js/header-bg":"yDAf","./js/themeSwitcher":"qgSZ","./js/arrowBtn.js":"bVN5"}]},{},["Focm"], null)
-//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.22cfa484.js.map
+//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.d1b4c810.js.map
