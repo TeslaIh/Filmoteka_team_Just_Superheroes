@@ -200,7 +200,7 @@
   height: 230px;
 
   background-color: $bg-hero;
-  background-size: contain;
+  background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 
@@ -229,7 +229,7 @@
 
   // Desktop
   @media screen and (min-width: 1024px) {
-    max-width: 1024px;
+    // max-width: 1024px;
 
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/header/librarybg-desktop.jpg');
