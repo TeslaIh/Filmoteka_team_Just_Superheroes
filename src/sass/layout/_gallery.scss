@@ -10,31 +10,65 @@
   @media screen and (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
+    margin-right: calc(-1 * 30px);
+    margin-bottom: calc(-1 * 30px);
   }
 }
 
-.card-set__img {
-  @media screen and (min-width: 768px) {
-    width: 274px;
+.card-set_img {
+    display: block;
+    width: 100%;
     height: 398px;
-  }
 }
 
-.card-set__item {
-  @media screen and (min-width: 768px) {
-    margin-right: 10px;
+.card-set_item {
+  @media screen and (min-width: 320px){
     margin-bottom: 20px;
   }
-}
 
-.card-set__text {
-  @media screen and (min-width: 768px) {
-    margin-top: 10px;
+  @media screen and (min-width: 768px){
+    margin-right: 30px;
+    margin-bottom: 30px;
+    width: calc((100% - 2 * 30px) / 2);
+  }
+
+  @media screen and (min-width: 1024px){
+    width: calc((100% - 3 * 30px) / 3);
   }
 }
 
-.card-set__genres {
-  @media screen and (min-width: 768px) {
+.card-set_box {
+
     margin-top: 10px;
+}
+
+.card-set_text {
+
+  @media screen and (min-width: 320px){
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 14px;
+  }
+
+  @media screen and (min-width: 768px){
+    line-height: 16px;
+  }
+}
+
+.card-set_genres {
+
+  @media screen and (min-width: 320px){
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FF6B08;
+  }
+
+  @media screen and (min-width: 768px){
+    line-height: 16px;
+
   }
 }
