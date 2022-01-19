@@ -37,4 +37,9 @@
     width: 6vmin;
     height: 6vmin;
   }
+
+  @media screen and (min-width: 1400px) {
+    width: 4vmin;
+    height: 4vmin;
+  }
 }
