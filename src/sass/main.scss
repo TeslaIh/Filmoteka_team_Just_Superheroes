@@ -8,8 +8,7 @@
 
 // Components
 @import 'components/container';
-@import './components/themeSwitcher';
-@import './components/arrowBtn';
+@import 'components/themeSwitcher';
 
 // Layout
 @import 'layout/header';
@@ -18,3 +17,4 @@
 @import 'layout/footer';
 @import 'layout/teammates';
 @import 'layout/film-modal';
+@import 'layout/arrowBtn';
