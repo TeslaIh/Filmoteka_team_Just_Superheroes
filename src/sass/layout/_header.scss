@@ -12,7 +12,7 @@
   justify-content: space-between;
   align-items: baseline;
   padding-top: 46px;
-  padding-bottom: 97px;
+  margin-bottom: 41px;
 }
 
 .header__logo-link {
@@ -36,6 +36,7 @@
 
 .nav__home,
 .nav__library {
+  position: relative;
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
@@ -48,4 +49,196 @@
 
 .nav__home {
   margin-right: 39px;
+}
+
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+
+  height: 3px;
+  width: 100%;
+
+  background-color: $accent-color;
+}
+
+//Input
+.header__search {
+  position: relative;
+  text-align: center;
+}
+
+.header__input {
+  max-width: 280px;
+  width: 100%;
+
+  font-size: 14px;
+  line-height: 1.14;
+  color: $text-secondary;
+  background-color: transparent;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid $text-secondary;
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 336px;
+  }
+}
+
+.header__search-icon {
+  position: absolute;
+  top: 5px;
+  right: 0;
+
+  @media screen and (min-width: 768px) {
+    right: 140px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    right: 273px;
+  }
+}
+
+//Кнопки на странице My library
+.header__buttons {
+  display: none;
+  text-align: center;
+}
+.button__watched,
+.button__queue {
+  padding: 14px 36px 12px;
+  font-size: 12px;
+  line-height: 1.33;
+  align-items: center;
+  text-transform: uppercase;
+
+  color: $text-secondary;
+  background-color: transparent;
+  border: 1px solid $text-secondary;
+  border-radius: 5px;
+}
+
+.button__watched {
+  @media screen and (min-width: 320px) {
+    margin-right: 20px;
+  }
+}
+
+.accent-filling {
+  background-color: $accent-color;
+  border-color: $accent-color;
+}
+
+///////////////////////// Background шапки//////////////////////////////////
+.header__home {
+  // Mobile
+  @media screen and (max-width: 319px) {
+    background-size: cover;
+  }
+  margin-right: auto;
+  margin-left: auto;
+  height: 230px;
+
+  background-color: $bg-hero;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../images/header/homebg-mobile.jpg');
+
+  @media screen and (min-device-pixel-ratio: 1.5),
+    screen and (min-resolution: 144dpi),
+    screen and (min-resolution: 1.5dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/homebg-mobile@2x.jpg');
+  }
+
+  // Tablet
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/homebg-tablet.jpg');
+
+    @media screen and (min-device-pixel-ratio: 1.5),
+      screen and (min-resolution: 144dpi),
+      screen and (min-resolution: 1.5dppx) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header/homebg-tablet@2x.jpg');
+    }
+  }
+
+  // Desktop
+  @media screen and (min-width: 1024px) {
+    max-width: 1024px;
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/homebg-desktop.jpg');
+
+    @media screen and (min-device-pixel-ratio: 1.5),
+      screen and (min-resolution: 144dpi),
+      screen and (min-resolution: 1.5dppx) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header/homebg-desktop@2x.jpg');
+    }
+  }
+}
+
+.header__library {
+  // Mobile
+  @media screen and (max-width: 319px) {
+    background-size: cover;
+  }
+  margin-right: auto;
+  margin-left: auto;
+  height: 230px;
+
+  background-color: $bg-hero;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../images/header/librarybg-mobile.jpg');
+
+  @media screen and (min-device-pixel-ratio: 1.5),
+    screen and (min-resolution: 144dpi),
+    screen and (min-resolution: 1.5dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/librarybg-mobile@2x.jpg');
+  }
+
+  // Tablet
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/librarybg-tablet.jpg');
+
+    @media screen and (min-device-pixel-ratio: 1.5),
+      screen and (min-resolution: 144dpi),
+      screen and (min-resolution: 1.5dppx) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header/librarybg-tablet@2x.jpg');
+    }
+  }
+
+  // Desktop
+  @media screen and (min-width: 1024px) {
+    max-width: 1024px;
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/librarybg-desktop.jpg');
+
+    @media screen and (min-device-pixel-ratio: 1.5),
+      screen and (min-resolution: 144dpi),
+      screen and (min-resolution: 1.5dppx) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header/librarybg-desktop@2x.jpg');
+    }
+  }
 }
