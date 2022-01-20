@@ -1,4 +1,9 @@
 import { getFilmsArray, getFilmsGenres } from './api-service.js';
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
+import {options} from './gallery-pagination';
+
+const pagination = new Pagination('pagination', options);
 
 const refs = {
     galleryList: document.querySelector('.card-set'),
@@ -8,12 +13,31 @@ getFilmsGenres().then(async function (res) {
     localStorage.setItem('GenresArray', JSON.stringify(res.data.genres));
 })
 
+const clearHtml = page => refs.galleryList.innerHTML = '';
 const addFilmToDom = film => refs.galleryList.insertAdjacentHTML('afterbegin', film);
 
-getFilmsArray().then(async function (res) {
+getFilmsArray(1).then(async function (res) {
+    console.log(res);
     localStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
     await getGenresFromLocalStorage();
     await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
+    pagination.setItemsPerPage(res.data.results.length); 
+    pagination.setTotalItems(res.data.total_results); 
+    await pagination.reset();
+});
+
+pagination.on('afterMove', (event) => {
+    const currentPage = event.page;
+    clearHtml();
+    getFilmsArray(currentPage).then(async function (res) {
+    console.log(res);
+    localStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
+    await getGenresFromLocalStorage();
+    await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
+    pagination.setItemsPerPage(res.data.results.length); 
+    pagination.setTotalItems(res.data.total_results); 
+});
+     
 });
 
 function renderGalleryFilms(array) {
@@ -35,9 +59,7 @@ function renderGalleryFilms(array) {
 function getGenresFromLocalStorage() {
     const genres = JSON.parse(localStorage.getItem('GenresArray'));
     const films = JSON.parse(localStorage.getItem('FilmsArray'));
-    console.log(films);
-    console.log(genres);
-    console.log(workForGenre(genres, films));  
+    workForGenre(genres, films);  
     localStorage.setItem('FilmsArray', JSON.stringify(films));
 };
 
@@ -54,3 +76,5 @@ function workForGenre(array, secArray) {
         });
     };
 };
+
+

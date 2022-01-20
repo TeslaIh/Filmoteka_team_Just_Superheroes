@@ -45,7 +45,7 @@
 .card-set_text {
 
   @media screen and (min-width: 320px){
-    font-family: 'Roboto', sans-serif;
+    font-family: $primary-font;
     font-weight: 500;
     font-size: 12px;
     text-transform: uppercase;
@@ -60,11 +60,12 @@
 .card-set_genres {
 
   @media screen and (min-width: 320px){
-    font-family: 'Roboto', sans-serif;
+    font-family: $primary-font;
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
-    color: #FF6B08;
+    color: $accent-color;
+;
   }
 
   @media screen and (min-width: 768px){

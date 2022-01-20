@@ -7,5 +7,3 @@ import './js/modal';
 import './js/themeSwitcher';
 import './js/arrowBtn';
 import './js/team-cards';
-
-
