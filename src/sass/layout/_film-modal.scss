@@ -85,3 +85,27 @@ td {
 .film-modal_preambula {
   margin-bottom: 20px;
 }
+
+.film-modal_btns {
+  padding: 14px 8px;
+  font-size: 12px;
+  line-height: 1.33;
+  align-items: center;
+  text-transform: uppercase;
+
+  color: $text-primary;
+  background-color: transparent;
+  border: 1px solid $text-primary;
+  border-radius: 5px;
+
+  &:first-child {
+    margin-right: 15px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $accent-color;
+    color: $text-secondary;
+    border-color: $accent-color;
+  }
+}

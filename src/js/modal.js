@@ -61,6 +61,11 @@ function filmFinder(evt) {
         <p class="film-modal_preambula">
             ${refs.overview}
         </p>
+
+        <div>
+            <button class="film-modal_btns">Add to Watched</button> 
+            <button class="film-modal_btns">Add to Queue</button>
+        </div> 
         
     </div>`;
 
