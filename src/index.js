@@ -1,3 +1,9 @@
 import './sass/main.scss';
-import './js/films-gallery';
 
+import './js/films-gallery';
+import './js/my-library';
+import './js/header-bg';
+import './js/modal';
+import './js/themeSwitcher';
+import './js/arrowBtn';
+import './js/team-cards';
