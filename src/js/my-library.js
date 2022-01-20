@@ -30,13 +30,14 @@ function onLibraryBtnClick(e) {
   }
 
   Notiflix.Notify.init({
-    width: '300px',
-    position: 'center-top',
-    distance: '215px', // - еще стоит настроить ⚠️⚠️⚠️
+    width: '200px',
+    position: 'left-top',
+    distance: '23px', // - еще стоит настроить ⚠️⚠️⚠️
     timeout: 3000,
     clickToClose: true,
+    showOnlyTheLastOne: true,
     fontFamily: 'Roboto',
-    fontSize: '15px',
+    fontSize: '14px',
     info: {
       background: '#FF6B01',
       textColor: '#fff',
