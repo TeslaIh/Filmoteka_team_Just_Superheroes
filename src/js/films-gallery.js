@@ -1,6 +1,5 @@
 import { getFilmsArray, getFilmsGenres } from './api-service.js';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
 import {options} from './gallery-pagination';
 
 const pagination = new Pagination('pagination', options);
