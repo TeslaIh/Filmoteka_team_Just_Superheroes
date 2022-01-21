@@ -92,4 +92,4 @@ function e(o){"Escape"===o.code&&(modal.close(),window.removeEventListener("keyd
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/films-gallery"),require("./js/my-library"),require("./js/header-bg"),require("./js/modal"),require("./js/themeSwitcher"),require("./js/arrowBtn"),require("./js/team-cards");
 },{"./sass/main.scss":"clu1","./js/films-gallery":"iMX8","./js/my-library":"L1LD","./js/header-bg":"yDAf","./js/modal":"RSqK","./js/themeSwitcher":"qgSZ","./js/arrowBtn":"bVN5","./js/team-cards":"YtuZ"}]},{},["Focm"], null)
-//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.e44dce8a.js.map
+//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.cc291cb9.js.map
