@@ -9,6 +9,7 @@ const refs = {
     galleryList: document.querySelector('.card-set'),
 };
 
+
 getFilmsGenres().then(async function (res) {
     localStorage.setItem('GenresArray', JSON.stringify(res.data.genres));
 })
