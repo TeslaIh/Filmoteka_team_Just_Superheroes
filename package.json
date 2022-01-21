@@ -28,6 +28,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "firebase": "^9.6.3",
+    "lodash-es": "^4.17.21",
+    "lodash.throttle": "^4.1.1",
     "notiflix": "^3.2.2",
     "simplelightbox": "^2.10.1",
     "tui-pagination": "^3.4.1"
