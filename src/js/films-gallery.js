@@ -22,7 +22,8 @@ getFilmsArray(1).then(async function (res) {
     await getGenresFromLocalStorage();
     await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
     pagination.setItemsPerPage(res.data.results.length); 
-    pagination.setTotalItems(res.data.total_results); 
+    pagination.setTotalItems(res.data.total_results);
+    document.querySelector('.spinner').style.display = "none";
     await pagination.reset();
 });
 
