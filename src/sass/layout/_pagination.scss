@@ -116,37 +116,38 @@
 }
 
 .tui-pagination .tui-prev {
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.6666 8H3.33325' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
   width: 40px;
   height: 40px;
+  border-radius: 5px;
+  background-color: $bg-footer;
+}
+.tui-pagination .tui-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: $bg-footer;
 }
 
-.tui-pagination .tui-next {
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.33341 8H12.6667' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+.tui-pagination .tui-ico-prev {
+  background: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.6666 8H3.33325' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
-  width: 40px;
-  height: 40px;
+  width: 16px;
+  height: 16px;
+}
+
+.tui-pagination .tui-ico-next {
+  background: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.33341 8H12.6667' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335' stroke='black' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 16px;
+  height: 16px;
 }
 
 .tui-pagination .tui-ico-first {
   width: 11px;
   height: 10px;
   background-position: 0px 0px
-}
-
-.tui-pagination .tui-ico-prev {
-  width: 6px;
-  height: 10px;
-  background-position: -26px 0px
-}
-
-.tui-pagination .tui-ico-next {
-  width: 6px;
-  height: 10px;
-  background-position: -13px -24px
 }
 
 .tui-pagination .tui-ico-last {
@@ -165,6 +166,10 @@
 .tui-pagination .tui-is-disabled:hover {
   background: $text-secondary;
   cursor: default
+}
+
+.tui-pagination .tui-is-disabled {
+  background-color: $text-secondary;
 }
 
 .tui-pagination .tui-is-disabled .tui-ico-prev {
@@ -201,7 +206,7 @@
 }
 
 .tui-page-inputs .tui-page-current {
-  color: $accent-color;
+  color: $accent-color
 }
 
 .tui-page-separator {

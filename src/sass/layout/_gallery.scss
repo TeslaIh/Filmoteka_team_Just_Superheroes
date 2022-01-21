@@ -58,7 +58,7 @@
 }
 
 .card-set_genres {
-
+  display: inline-block;
   @media screen and (min-width: 320px){
     font-family: $primary-font;
     font-weight: 500;
@@ -72,4 +72,19 @@
     line-height: 16px;
 
   }
+}
+
+.card-set_vote {
+  display: inline-block;
+  width: 36px;
+  height: 16px;
+  background-color: $accent-color;
+  border-radius: 5px;
+  margin-left: 5px;
+  font-family: $primary-font;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: $text-secondary;
 }

@@ -51,6 +51,7 @@ function renderGalleryFilms(array) {
         <div class="card-set_box">
         <p class="card-set_text">${el.title}</p>
         <p class="card-set_genres">${el.genre_ids.join(", ")} &#124 ${el.release_date.slice(0, 4)}</p>
+        <p class="card-set_vote">${el.vote_average}</p>
         </div>
         </li>`
     }).join('');
