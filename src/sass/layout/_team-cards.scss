@@ -84,6 +84,7 @@
 
 .team__list {
   list-style: none;
+  justify-content: end;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -167,6 +168,7 @@
 .team {
   border-radius: 15px;
   padding-bottom: 5%;
+  justify-content: center;
 }
 .team-discription {
   font-weight: bold;
