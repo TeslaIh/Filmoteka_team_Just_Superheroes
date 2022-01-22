@@ -50,6 +50,8 @@
 
   border: none;
 
+  @include transition1(box-shadow);
+
   &:hover,
   &:focus {
     outline: none;
@@ -144,6 +146,14 @@
   background-color: transparent;
   border: 1px solid $text-secondary;
   border-radius: 5px;
+
+  @include transition2(background-color, border-color);
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $accent-color;
+  }
 }
 
 .button__watched {
