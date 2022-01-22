@@ -20,9 +20,19 @@
   width: 100%;
   height: 398px;
   border-radius: 5px;
+
+  @include transition1(box-shadow);
 }
 
 .card-set_item {
+  @include transition1(scale);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    border-radius: 5px;
+  }
+
   @media screen and (min-width: 320px) {
     margin-bottom: 20px;
   }
