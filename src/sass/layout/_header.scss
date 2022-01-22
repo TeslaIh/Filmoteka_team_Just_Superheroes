@@ -15,9 +15,12 @@
   margin-bottom: 41px;
 }
 
+// Логотип
 .header__logo-link {
   margin-right: 10px;
   color: $text-secondary;
+
+  @include transition2(transform, color);
 
   &:hover,
   &:focus {
@@ -34,6 +37,7 @@
   line-height: 1.17;
 }
 
+// Навигация
 .nav__home,
 .nav__library {
   position: relative;
@@ -45,6 +49,14 @@
   background-color: transparent;
 
   border: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 2.8px 2.2px rgb(218, 105, 12), 0 6.7px 5.3px rgb(218, 105, 12),
+      0 12.5px 10px rgba(221, 126, 37, 0.856), 0 22.3px 17.9px rgba(221, 126, 37, 0.856),
+      0 41.8px 33.4px rgb(209, 114, 6), 0 100px 80px rgb(209, 114, 6);
+  }
 }
 
 .nav__home {
@@ -55,9 +67,9 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: -3px;
+  bottom: -2px;
 
-  height: 3px;
+  height: 2.5px;
   width: 100%;
 
   background-color: $accent-color;
@@ -82,6 +94,15 @@
   border-left: none;
   border-right: none;
   border-bottom: 1px solid $text-secondary;
+
+  @include transition1(border-bottom);
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    border-bottom: 1px solid $accent-color;
+  }
 
   &::placeholder {
     color: $text-secondary;
