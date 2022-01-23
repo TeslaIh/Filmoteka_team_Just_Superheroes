@@ -2,7 +2,6 @@ const filmModalOpen = document.querySelector('[data-modal-open]');
 const filmModalCntnr = document.querySelector('[data-modal-container]');
 
 filmModalOpen.addEventListener('click', function modalRender(evt) {
-  filmModalCntnr.classList.add('show-modal');
   filmFinder(evt);
 });
 
@@ -10,21 +9,14 @@ function filmFinder(evt) {
   evt.preventDefault();
   let filmCardSelector = '';
 
-  // if (evt.target.nodeName === "UL") {
-  //     return;
-  // };
-
-  if (evt.currentTarget.nodeName !== 'LI') {
+  if (evt.target.nodeName === 'UL') {
+    return;
+  } else {
     filmCardSelector = evt.target.parentNode;
   }
 
-  // else {
-  //     filmCardSelector = evt.target;
-  // };
-
-  const filmTitle = filmCardSelector.querySelector('.card-set_text');
   const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray')).find(
-    film => film.title === filmTitle.textContent,
+    film => film.title === filmCardSelector.querySelector('.card-set_text').textContent,
   );
   const refs = {
     poster: filmsInfoArray.poster_path,
@@ -60,7 +52,7 @@ function filmFinder(evt) {
             <table class="film-modal_tbl">
                 <tr>
                     <td class="film-modal_tbl-row">Vote / Votes</td>
-                    <td> <span class="film-modal_tbl-d-vote">${
+                    <td class="film-modal_tbl-d"> <span class="film-modal_tbl-d-vote">${
                       refs.vote
                     }</span> / <span class="film-modal_tbl-d-votes">${refs.votes}</span></span></td>
                 </tr>
@@ -93,7 +85,7 @@ function filmFinder(evt) {
     `;
 
   filmModalCntnr.innerHTML = modalHTML;
-
+  filmModalCntnr.classList.add('show-modal');
   ////////////////////////////////////Закрытие модального окна/////////////////////////////////////////////////
   const filmModalClose = document.querySelector('[data-modal-close]');
 
