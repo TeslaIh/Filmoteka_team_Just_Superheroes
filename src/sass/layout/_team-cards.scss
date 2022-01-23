@@ -51,7 +51,6 @@
     margin: auto;
     width: 628px;
     height: 1175px;
-    // height: 850px;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -64,7 +63,6 @@
     padding-left: 10px;
     padding-right: 25px;
     height: 1600px;
-    // height: 950px;
   }
 }
 .button {
@@ -80,6 +78,11 @@
   &:hover {
     color: #ff6b08;
   }
+}
+
+img {
+  display: inline;
+  // transform: scale(0.9);
 }
 
 .team__list {
@@ -174,16 +177,4 @@
   font-weight: bold;
   padding-top: 3%;
   padding-bottom: 3%;
-}
-.line {
-  position: absolute;
-  padding-top: 66px;
-  color: #ff6b08;
-  font-weight: bold;
-  font-size: 22px;
-  padding-left: 110px;
-
-  @media screen and (max-width: 1023px) {
-    display: none;
-  }
 }
