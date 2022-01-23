@@ -13,7 +13,7 @@ getFilmsGenres().then(async function (res) {
     localStorage.setItem('GenresArray', JSON.stringify(res.data.genres));
 })
 
-const clearHtml = page => refs.galleryList.innerHTML = '';
+const clearHtml = () => refs.galleryList.innerHTML = '';
 const addFilmToDom = film => refs.galleryList.insertAdjacentHTML('afterbegin', film);
 
 getFilmsArray(1).then(async function (res) {
@@ -42,15 +42,31 @@ pagination.on('afterMove', (event) => {
 
 function renderGalleryFilms(array) {
     return array.map(el => {
+        let date = '21 Century';
         if (el.genre_ids.length > 3) {
             el.genre_ids.splice(2, el.genre_ids.length);
             el.genre_ids.push('Other');
         };
+        
+        if (el.hasOwnProperty('release_date') && el.release_date.length === 10) { 
+            date = el.release_date.slice(0, 4)
+        };
+
+        if (el.poster_path === null) {
+           return `<li class='card-set_item'>
+        <img class="card-set_img" src="https://kinomaiak.ru/wp-content/uploads/2018/02/noposter.png" alt='film'>
+        <div class="card-set_box">
+        <p class="card-set_text">${el.title}</p>
+        <p class="card-set_genres">${el.genre_ids.join(", ")} &#124 ${date}</p>
+        <p class="card-set_vote">${el.vote_average}</p>
+        </div>
+        </li>`   
+        }
         return `<li class='card-set_item'>
         <img class="card-set_img" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt='film'>
         <div class="card-set_box">
         <p class="card-set_text">${el.title}</p>
-        <p class="card-set_genres">${el.genre_ids.join(", ")} &#124 ${el.release_date.slice(0, 4)}</p>
+        <p class="card-set_genres">${el.genre_ids.join(", ")} &#124 ${date}</p>
         <p class="card-set_vote">${el.vote_average}</p>
         </div>
         </li>`
