@@ -29,6 +29,15 @@
   }
 }
 
+.header__logo-icon {
+  @include transition1(transform);
+
+  &:hover,
+  &:focus {
+    transform: rotate(180deg);
+  }
+}
+
 .header__logo-text {
   @media screen and (max-width: 767px) {
     display: none;

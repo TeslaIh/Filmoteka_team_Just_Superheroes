@@ -25,7 +25,7 @@
 }
 
 .card-set_item {
-  @include transition1(scale);
+  @include transition1(transform);
 
   &:hover,
   &:focus {
