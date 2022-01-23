@@ -30,6 +30,20 @@ export default class ApiSettings {
     });
   }
 
+   async getSearchFilms() {
+    return axios({
+      method: 'GET',
+      url: '/search/movie',
+      baseURL: 'https://api.themoviedb.org/3',
+      params: {
+        api_key: 'f792bc0e541efe7531ca1576bffe5aa2',
+         page: `${this.page}`,
+        query: `${this.query}`,
+        language : "en-US",
+      },
+    });
+  }
+
   get numbPage() {
     return this.page;
   }
@@ -38,10 +52,15 @@ export default class ApiSettings {
     this.page = newPage;
   }
 
-  // get query() {
-  //   return this.query
-  // }
-  // set query(newQuery) {
-  //   this.query = newQuery;
-  // }
+  get textQuery() {
+    return this.query
+  }
+  set textQuery(newQuery) {
+    this.query = newQuery;
+  }
+  get reset() {
+  this.page = 1;
+    this.query = "";
+  }
+
 }

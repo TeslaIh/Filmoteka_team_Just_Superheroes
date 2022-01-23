@@ -1,56 +1,52 @@
 //поиск для инпута в хэдэре header__input
-import { getFilmsArray, getFilmsGenres } from './api-service.js';
-import axios from 'axios'; // временно
+import ApiService from './api-service';
+
 import cardFilmTpl from '../templates/card-films.hbs';
 import debounce from 'lodash-es/debounce';
+// const Handlebars = require('handlebars');
+const apiServ = new ApiService();
 
-const Handlebars = require('handlebars');
-
-async function getSearchFilms(searchQuery, page = 1) {
-  // надо перенести  в api-service и  желательно использовать как метод класса
-  return axios({
-    method: 'GET',
-    url: '/search/movie',
-    baseURL: 'https://api.themoviedb.org/3',
-    params: {
-      api_key: 'f792bc0e541efe7531ca1576bffe5aa2',
-      // page: `${page}`, // в дальнейшем  использовать при пагинации
-      page,
-      query: `${searchQuery}`,
-    },
-  });
-}
 const refs = {
   searchInputEl: document.querySelector('.header__input'),
   galleryFilmsEl: document.querySelector('.gallery'),
-  //  allarmTextEl: document.querySelector('.'), // нужен div в разметке
+  allarmTextEl: document.querySelector('.allarm-text'),
+  galleryList: document.querySelector('.card-set'),
+  headerSearchEl: document.querySelector('.header__search'),
 };
 
-refs.searchInputEl.addEventListener(
-  'input',
-  debounce(e => {
-    onSearchFilms(e);
-  }, 500),
-);
+refs.searchInputEl.addEventListener('input', onSearchFilms);
 
 function onSearchFilms(event) {
-  getSearchFilms(refs.searchInputEl.value).then(async function (res) {
-    try {
+  apiServ.query = wordCheck(event.currentTarget.value);
+
+  if (apiServ.query) {
+    apiServ.getSearchFilms(apiServ.query, apiServ.page).then(async function (res) {
       let { page, results, total_pages, total_results } = res.data;
-      if (total_results > 0) {
-        
-        //    console.log(cardMarkup(results));
-      } else {
-        clearFilmsGallery();
+
+      const addFilmToDom = film => refs.galleryList.insertAdjacentHTML('afterbegin', film);
+      const clearHtml = () => (refs.galleryList.innerHTML = '');
+      sessionStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
+
+      renderGalleryFilms(JSON.parse(sessionStorage.getItem('FilmsArray')));
+      if (total_results < 1) {
+        clearSearhInput();
         getAllarmText();
-        return;
+        apiServ.reset;
+        apiServ.getFilmsArray();
+        renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray')));
+      } else {
+        apiServ.getSearchFilms(apiServ.query, apiServ.page);
+        sessionStorage.setItem('GenresArray', JSON.stringify(res.data.genres));
+        sessionStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
+        getGenres();
+        await addFilmToDom(renderGalleryFilms(JSON.parse(sessionStorage.getItem('FilmsArray'))));
       }
-    } catch {
-      alert('error');
-    } finally {
-      clearSearhInput();
-    }
-  });
+    });
+  }
+}
+
+function wordCheck(text) {
+  return text.trim().toLowerCase();
 }
 
 function clearSearhInput() {
@@ -60,17 +56,72 @@ function clearFilmsGallery() {
   refs.galleryFilmsEl.innerHTML = '';
 }
 
-const cardMarkup = function createSearchGalleryFilms(films) {
-  // рендер карточки фильма
-  console.log(films.map(film => cardFilmTpl(film)).join(''));
-};
+function renderGalleryFilms(array) {
+  return array
+    .map(el => {
+      let date = '21 Century';
+      let img = 'https://kinomaiak.ru/wp-content/uploads/2018/02/noposter.png';
+
+      if (el.genre_ids.length > 3) {
+        el.genre_ids.splice(2, el.genre_ids.length);
+        el.genre_ids.push('Other');
+      }
+
+      if (el.hasOwnProperty('release_date') && el.release_date.length === 10) {
+        date = el.release_date.slice(0, 4);
+      }
+      if (el.poster_path !== null) {
+        img = `https://image.tmdb.org/t/p/w500${el.poster_path}`;
+      }
+
+      return `<li class='card-set_item'>
+        <img class="card-set_img" src="${img}" alt='film'>
+        <div class="card-set_box">
+        <p class="card-set_text">${el.title}</p>
+        <p class="card-set_genres">${el.genre_ids.join(', ')} &#124 ${date}</p>
+        <p class="card-set_vote">${el.vote_average}</p>
+        </div>
+        </li>`;
+    })
+    .join('');
+
+  refs.galleryFilmsEl.insertAdjacentHTML('beforeend', markup);
+}
+
+function getGenres() {
+  const genres = JSON.parse(localStorage.getItem('GenresArray'));
+  const films = JSON.parse(sessionStorage.getItem('FilmsArray'));
+  workForGenre(genres, films);
+  sessionStorage.setItem('FilmsArray', JSON.stringify(films));
+}
+
+function workForGenre(array, secArray) {
+  const arrayFilmGenre = secArray.map(val => val.genre_ids);
+  for (let i = 0; i < arrayFilmGenre.length; i += 1) {
+    arrayFilmGenre[i].map(p1 => {
+      for (const genre of array) {
+        if (genre.id === p1) {
+          arrayFilmGenre[i].splice(arrayFilmGenre[i].indexOf(p1), 1, genre.name);
+        }
+      }
+    });
+  }
+}
 
 function getAllarmText() {
-  // нужен в разметке доп. div с классом
-
-  refs.allarmTextEl.classList.add('visually-hidden');
-
-  setTimeout(function () {
-    refs.allarmTextEl.classList.remove('visually-hidden');
-  }, 2000);
+  //  alert("ups");
+  // clearHtml();
+  // const allarmText = document.createElement('p');
+  //   // refs.allarmTextEl = document.querySelector('.allarm-text');
+  //   allarmText.classList.add('visually-hidden');
+  //   allarmText.textContent = 'ups!';
+  // HTMLFormControlsCollection.log()
+  //   allarmText.after(text);
+  //   // allarmText.innerHTML
+  //   refs.headerSearchEl.after(allarmText);
+  //   // нужен в разметке доп. div с классом
+  //   refs.allarmTextEl.classList.add('visually-hidden');
+  //   setTimeout(function () {
+  //     refs.allarmTextEl.classList.remove('visually-hidden');
+  //   }, 2000);
 }
