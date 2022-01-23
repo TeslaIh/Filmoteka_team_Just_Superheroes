@@ -11,7 +11,7 @@ function filmFinder(evt) {
   evt.preventDefault();
   let filmCardSelector = '';
 
-  // const changeBtnModal = new BtnModal(filmTitle.textContent);
+  
 
   if (evt.target.nodeName === 'UL') {
     return;
@@ -22,7 +22,7 @@ function filmFinder(evt) {
   const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray')).find(
     film => film.title === filmCardSelector.querySelector('.card-set_text').textContent,
   );
-  
+  const changeBtnModal = new BtnModal(filmsInfoArray.title);
   const refs = {
     poster: filmsInfoArray.poster_path,
     title: filmsInfoArray.title,
@@ -92,7 +92,7 @@ function filmFinder(evt) {
   
   filmModalCntnr.classList.add('show-modal');
   
-  // changeBtnModal.addFuncListener();
+  changeBtnModal.addFuncListener();
   
 //////////////Закрытие модального окна///////////
   const filmModalClose = document.querySelector('[data-modal-close]');
