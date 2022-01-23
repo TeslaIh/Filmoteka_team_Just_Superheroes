@@ -42,6 +42,7 @@ function filmFinder(evt) {
 
   const modalHTML = `
     <div class="film-modal">
+        <h2 class="visually-hidden">Film Information</h2>
         <button class="film-modal_close-btn" type="button" aria-label="Modal close button" data-modal-close>
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 8L22 22" stroke-width="2"/>
