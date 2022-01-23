@@ -1,3 +1,5 @@
+import BtnModal from './modal-btn';
+
 const filmModalOpen = document.querySelector('[data-modal-open]');
 const filmModalCntnr = document.querySelector('[data-modal-container]');
 
@@ -9,15 +11,18 @@ function filmFinder(evt) {
   evt.preventDefault();
   let filmCardSelector = '';
 
+  const changeBtnModal = new BtnModal(filmTitle.textContent);
+
   if (evt.target.nodeName === 'UL') {
     return;
   } else {
     filmCardSelector = evt.target.parentNode;
-  }
+  };
 
   const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray')).find(
     film => film.title === filmCardSelector.querySelector('.card-set_text').textContent,
   );
+  
   const refs = {
     poster: filmsInfoArray.poster_path,
     title: filmsInfoArray.title,
@@ -28,7 +33,9 @@ function filmFinder(evt) {
     genre: filmsInfoArray.genre_ids,
     overview: filmsInfoArray.overview,
   };
+
   let imgNotFound = 'https://kinomaiak.ru/wp-content/uploads/2018/02/noposter.png';
+  
   if (refs.poster !== null) {
     imgNotFound = `https://image.tmdb.org/t/p/w780${refs.poster}`;
   }
@@ -43,7 +50,7 @@ function filmFinder(evt) {
         </button>
         
         <div class="film-modal_poster">
-            <img class="film-modal_img" alt="${refs.title}" src="${imgNotFound}"/>
+          <img class="film-modal_img" alt="${refs.title}" src="${imgNotFound}"/>
         </div>
 
         <div class="film-modal_discription">
@@ -52,9 +59,7 @@ function filmFinder(evt) {
             <table class="film-modal_tbl">
                 <tr>
                     <td class="film-modal_tbl-row">Vote / Votes</td>
-                    <td class="film-modal_tbl-d"> <span class="film-modal_tbl-d-vote">${
-                      refs.vote
-                    }</span> / <span class="film-modal_tbl-d-votes">${refs.votes}</span></span></td>
+                    <td class="film-modal_tbl-d"> <span class="film-modal_tbl-d-vote">${refs.vote} </span> / <span class="film-modal_tbl-d-votes">${refs.votes}</span></span></td>
                 </tr>
                 <tr>
                     <td class="film-modal_tbl-row">Popularity</td>
@@ -76,17 +81,20 @@ function filmFinder(evt) {
             </p>
 
             <div class="film-modal_flex-btns">
-                <button class="film-modal_btns">Add to Watched</button> 
-                <button class="film-modal_btns">Add to Queue</button>
-                
+                <button class="film-modal_btns" id="watched">Add to Watched</button> 
+                <button class="film-modal_btns" id="queue">Add to Queue</button>
             </div> 
         </div>
     </div>
     `;
 
   filmModalCntnr.innerHTML = modalHTML;
+  
   filmModalCntnr.classList.add('show-modal');
-  ////////////////////////////////////Закрытие модального окна/////////////////////////////////////////////////
+  
+  changeBtnModal.addFuncListener();
+  
+//////////////Закрытие модального окна///////////
   const filmModalClose = document.querySelector('[data-modal-close]');
 
   const closeModalByESC = evt => {
