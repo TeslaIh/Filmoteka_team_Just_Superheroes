@@ -1,17 +1,17 @@
 @mixin transition1($firstProperty) {
   transition-property: $firstProperty;
-  transition-duration: 300ms;
+  transition-duration: 400ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @mixin transition2($firstProperty, $secondProperty) {
   transition-property: $firstProperty, $secondProperty;
-  transition-duration: 300ms;
+  transition-duration: 400ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @mixin transition3($firstProperty, $secondProperty, $thirdProperty) {
   transition-property: $firstProperty, $secondProperty, $thirdProperty;
-  transition-duration: 300ms;
+  transition-duration: 400ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

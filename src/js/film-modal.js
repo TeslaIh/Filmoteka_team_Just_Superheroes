@@ -11,7 +11,7 @@ function filmFinder(evt) {
   evt.preventDefault();
   let filmCardSelector = '';
 
-  const changeBtnModal = new BtnModal(filmTitle.textContent);
+  // const changeBtnModal = new BtnModal(filmTitle.textContent);
 
   if (evt.target.nodeName === 'UL') {
     return;
@@ -77,7 +77,7 @@ function filmFinder(evt) {
         
             <h3 class="film-modal_subtitle">ABOUT</h3>
             <p class="film-modal_preambula">
-                ${refs.overview}
+              ${refs.overview}
             </p>
 
             <div class="film-modal_flex-btns">
@@ -92,7 +92,7 @@ function filmFinder(evt) {
   
   filmModalCntnr.classList.add('show-modal');
   
-  changeBtnModal.addFuncListener();
+  // changeBtnModal.addFuncListener();
   
 //////////////Закрытие модального окна///////////
   const filmModalClose = document.querySelector('[data-modal-close]');
