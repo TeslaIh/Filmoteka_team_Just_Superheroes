@@ -2,42 +2,46 @@ const filmModalOpen = document.querySelector('[data-modal-open]');
 const filmModalCntnr = document.querySelector('[data-modal-container]');
 
 filmModalOpen.addEventListener('click', function modalRender(evt) {
-    filmModalCntnr.classList.add('show-modal');
-    filmFinder(evt);
+  filmModalCntnr.classList.add('show-modal');
+  filmFinder(evt);
 });
 
-function filmFinder(evt) { 
-    evt.preventDefault();
-    let filmCardSelector = "";
-    
-    // if (evt.target.nodeName === "UL") {
-    //     return;
-    // };
-    
-    if (evt.currentTarget.nodeName !== "LI") {
-        filmCardSelector = evt.target.parentNode;
-    } 
+function filmFinder(evt) {
+  evt.preventDefault();
+  let filmCardSelector = '';
 
-    // else {
-    //     filmCardSelector = evt.target; 
-    // };
+  // if (evt.target.nodeName === "UL") {
+  //     return;
+  // };
 
-    const filmTitle = filmCardSelector.querySelector('.card-set_text');
-    const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray'))
-        .find(film => film.title === filmTitle.textContent);
+  if (evt.currentTarget.nodeName !== 'LI') {
+    filmCardSelector = evt.target.parentNode;
+  }
 
-    const refs = {
-        poster: filmsInfoArray.poster_path,
-        title: filmsInfoArray.title,
-        vote: filmsInfoArray.vote_average,
-        votes: filmsInfoArray.vote_count,
-        popularity: filmsInfoArray.popularity,
-        original_title: filmsInfoArray.original_title,
-        genre: filmsInfoArray.genre_ids,
-        overview: filmsInfoArray.overview,
-    };
+  // else {
+  //     filmCardSelector = evt.target;
+  // };
 
-    const modalHTML = `
+  const filmTitle = filmCardSelector.querySelector('.card-set_text');
+  const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray')).find(
+    film => film.title === filmTitle.textContent,
+  );
+  const refs = {
+    poster: filmsInfoArray.poster_path,
+    title: filmsInfoArray.title,
+    vote: filmsInfoArray.vote_average,
+    votes: filmsInfoArray.vote_count,
+    popularity: filmsInfoArray.popularity,
+    original_title: filmsInfoArray.original_title,
+    genre: filmsInfoArray.genre_ids,
+    overview: filmsInfoArray.overview,
+  };
+  let imgNotFound = 'https://kinomaiak.ru/wp-content/uploads/2018/02/noposter.png';
+  if (refs.poster !== null) {
+    imgNotFound = `https://image.tmdb.org/t/p/w780${refs.poster}`;
+  }
+
+  const modalHTML = `
     <div class="film-modal">
         <button class="film-modal_close-btn" type="button" aria-label="Modal close button" data-modal-close>
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +51,7 @@ function filmFinder(evt) {
         </button>
         
         <div class="film-modal_poster">
-            <img class="film-modal_img" alt="${refs.title}" src= "https://image.tmdb.org/t/p/w780${refs.poster}"/>
+            <img class="film-modal_img" alt="${refs.title}" src="${imgNotFound}"/>
         </div>
 
         <div class="film-modal_discription">
@@ -56,7 +60,9 @@ function filmFinder(evt) {
             <table class="film-modal_tbl">
                 <tr>
                     <td class="film-modal_tbl-row">Vote / Votes</td>
-                    <td> <span class="film-modal_tbl-d-vote">${refs.vote}</span> / <span class="film-modal_tbl-d-votes">${refs.votes}</span></span></td>
+                    <td> <span class="film-modal_tbl-d-vote">${
+                      refs.vote
+                    }</span> / <span class="film-modal_tbl-d-votes">${refs.votes}</span></span></td>
                 </tr>
                 <tr>
                     <td class="film-modal_tbl-row">Popularity</td>
@@ -68,7 +74,7 @@ function filmFinder(evt) {
                 </tr>
                 <tr>
                     <td class="film-modal_tbl-row film-modal_tbl-last">Genre</td>
-                    <td class="film-modal_tbl-d film-modal_tbl-last">${refs.genre.join(", ")}</td>
+                    <td class="film-modal_tbl-d film-modal_tbl-last">${refs.genre.join(', ')}</td>
                 </tr>
             </table>
         
@@ -86,21 +92,33 @@ function filmFinder(evt) {
     </div>
     `;
 
-    filmModalCntnr.innerHTML = modalHTML;
+  filmModalCntnr.innerHTML = modalHTML;
 
-        
-    ////////////////////////////////////Закрытие модального окна/////////////////////////////////////////////////
-    const filmModalClose = document.querySelector('[data-modal-close]');
-   
+  ////////////////////////////////////Закрытие модального окна/////////////////////////////////////////////////
+  const filmModalClose = document.querySelector('[data-modal-close]');
 
-    filmModalClose.addEventListener('click', () => {
-        filmModalCntnr.classList.remove('show-modal');
-    });
+  const closeModalByESC = evt => {
+    if (evt.key === 'Escape') {
+      filmModalCntnr.classList.remove('show-modal');
+      window.removeEventListener('keydown', closeModalByESC);
+    }
+  };
 
-   filmModalCntnr.addEventListener('click', () => {
-        filmModalCntnr.classList.remove('show-modal');
-    });
+  const closeModalByBACKDROP = evt => {
+    if (evt.target.nodeName !== 'ARTICLE') {
+      return;
+    } else {
+      filmModalCntnr.classList.remove('show-modal');
+      filmModalCntnr.removeEventListener('click', closeModalByBACKDROP);
+    }
+  };
 
-};
+  const closeModalByCLICK = () => {
+    filmModalCntnr.classList.remove('show-modal');
+    filmModalCntnr.removeEventListener('click', closeModalByCLICK);
+  };
 
-
+  window.addEventListener('keydown', closeModalByESC);
+  filmModalClose.addEventListener('click', closeModalByCLICK);
+  filmModalCntnr.addEventListener('click', closeModalByBACKDROP);
+}

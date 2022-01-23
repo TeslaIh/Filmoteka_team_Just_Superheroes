@@ -35,6 +35,7 @@
 
   max-height: 100vh;
   overflow-y: scroll;
+  z-index: 101;
 
   &::-webkit-scrollbar {
     width: 0;
