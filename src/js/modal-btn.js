@@ -19,8 +19,7 @@ export default class BtnModal {
     const modalBtnQ = document.getElementById('queue');
 
     if (LocWatched) {
-      console.log('BtnModal ~ LocWatched', LocWatched);
-      console.log('BtnModal ~ LocFilmsArray', LocFilmsArray);
+      
 
       if (LocWatched.find(({ title }) => title === this.film)) {
         modalBtnW.textContent = 'Remove to Watched';
