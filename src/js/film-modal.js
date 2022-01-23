@@ -14,7 +14,7 @@ function filmFinder(evt) {
     //     return;
     // };
     
-    if (evt.target.nodeName !== "LI") {
+    if (evt.currentTarget.nodeName !== "LI") {
         filmCardSelector = evt.target.parentNode;
     } 
 

@@ -6,6 +6,15 @@ body {
 body.light-theme {
   background-color: $text-secondary;
   color: $bg-dark-theme;
+
+  .card-set_img {
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 60px 20px rgba(20, 20, 20, 0.75);
+      -webkit-box-shadow: 0 0 60px 20px rgba(20, 20, 20, 0.75);
+      -moz-box-shadow: 0 0 60px 20px rgba(20, 20, 20, 0.75);
+    }
+  }
 }
 
 body.dark-theme {
@@ -31,6 +40,15 @@ body.dark-theme {
   .tui-is-disabled.tui-prev:hover {
     background: $bg-dark-theme;
     cursor: default;
+  }
+
+  .card-set_img {
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 66px 30px rgba(158, 107, 57, 0.75);
+      -webkit-box-shadow: 0 0 66px 30px rgba(158, 107, 57, 0.75);
+      -moz-box-shadow: 0 0 66px 30px rgba(158, 107, 57, 0.75);
+    }
   }
 }
 
