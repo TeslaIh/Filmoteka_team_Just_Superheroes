@@ -106,7 +106,7 @@ function filmFinder(evt) {
     filmModalCntnr.classList.remove('show-modal');
   });
 
-  filmModalCntnr.addEventListener('click', () => {
-    filmModalCntnr.classList.remove('show-modal');
-  });
+  // filmModalCntnr.addEventListener('click', () => {
+  //   filmModalCntnr.classList.remove('show-modal');
+  // });
 }
