@@ -127,9 +127,8 @@
 
 .header__form-btn {
   position: absolute;
-  top: 5px;
+  top: 2px;
   right: 0;
-  padding: 7px;
   background-color: transparent;
   border: 0;
 
@@ -143,10 +142,6 @@
 }
 
 .header__search-icon {
-  position: absolute;
-  top: 5px;
-  right: 0;
-
   stroke: $text-secondary;
   cursor: pointer;
 
