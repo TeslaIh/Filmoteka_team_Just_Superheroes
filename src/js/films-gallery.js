@@ -15,7 +15,6 @@ apiPost.getFilmsGenres().then(async function (res) {
 const clearHtml = () => (refs.galleryList.innerHTML = '');
 const addFilmToDom = film => refs.galleryList.insertAdjacentHTML('afterbegin', film);
 
-
 apiPost.getFilmsArray().then(async function (res) {
   localStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
   await getGenresFromLocalStorage();
@@ -25,7 +24,6 @@ apiPost.getFilmsArray().then(async function (res) {
   document.querySelector('.spinner').style.display = 'none';
   await pagination.reset();
 });
-
 
 pagination.on('afterMove', event => {
     const currentPage = event.page;

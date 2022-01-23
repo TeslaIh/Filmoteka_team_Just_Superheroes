@@ -15,9 +15,12 @@
   margin-bottom: 41px;
 }
 
+// Логотип
 .header__logo-link {
   margin-right: 10px;
   color: $text-secondary;
+
+  @include transition2(transform, color);
 
   &:hover,
   &:focus {
@@ -34,6 +37,7 @@
   line-height: 1.17;
 }
 
+// Навигация
 .nav__home,
 .nav__library {
   position: relative;
@@ -45,6 +49,16 @@
   background-color: transparent;
 
   border: none;
+
+  @include transition1(box-shadow);
+
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 2.8px 2.2px rgb(218, 105, 12), 0 6.7px 5.3px rgb(218, 105, 12),
+      0 12.5px 10px rgba(221, 126, 37, 0.856), 0 22.3px 17.9px rgba(221, 126, 37, 0.856),
+      0 41.8px 33.4px rgb(209, 114, 6), 0 100px 80px rgb(209, 114, 6);
+  }
 }
 
 .nav__home {
@@ -55,9 +69,9 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: -3px;
+  bottom: -2px;
 
-  height: 3px;
+  height: 2.5px;
   width: 100%;
 
   background-color: $accent-color;
@@ -70,6 +84,7 @@
 }
 
 .header__input {
+  position: relative;
   max-width: 280px;
   width: 100%;
 
@@ -83,6 +98,15 @@
   border-right: none;
   border-bottom: 1px solid $text-secondary;
 
+  @include transition1(border-bottom);
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    border-bottom: 1px solid $accent-color;
+  }
+
   &::placeholder {
     color: $text-secondary;
   }
@@ -92,10 +116,13 @@
   }
 }
 
-.header__search-icon {
+.header__form-btn {
   position: absolute;
   top: 5px;
   right: 0;
+  padding: 7px;
+  background-color: transparent;
+  border: 0;
 
   @media screen and (min-width: 768px) {
     right: 140px;
@@ -103,6 +130,29 @@
 
   @media screen and (min-width: 1024px) {
     right: 273px;
+  }
+}
+
+.header__search-icon {
+  position: absolute;
+  top: 5px;
+  right: 0;
+
+  stroke: $text-secondary;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    right: 140px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    right: 273px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    stroke: $accent-color;
   }
 }
 
@@ -123,6 +173,14 @@
   background-color: transparent;
   border: 1px solid $text-secondary;
   border-radius: 5px;
+
+  @include transition2(background-color, border-color);
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $accent-color;
+  }
 }
 
 .button__watched {

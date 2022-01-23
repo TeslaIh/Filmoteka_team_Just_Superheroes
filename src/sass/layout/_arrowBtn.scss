@@ -5,23 +5,23 @@
   z-index: 10;
   right: 3%;
   bottom: 5%;
+  border-radius: 50%;
 
   :hover,
   :focus {
-    fill: $accent-color;
-    stroke: $accent-color;
+    fill: #ff7214e8;
+    box-shadow: 5px 4px 2px rgb(250, 114, 3), 5px 8px 4px rgb(255, 181, 121),
+      5px 8px 6px rgba(245, 113, 5, 0.801);
   }
 }
 
 .arrow-btn {
-  
   fill: $text-for-modal;
   fill-opacity: 0.7;
-  stroke: $text-for-modal;
-  stroke-opacity: 0.7;
   display: none;
   width: 12vmin;
   height: 12vmin;
+  border-radius: 50%;
 
   @media screen and (min-width: 480px) {
     width: 10vmin;

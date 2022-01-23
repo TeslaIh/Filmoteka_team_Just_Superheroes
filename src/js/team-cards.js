@@ -1,4 +1,4 @@
-window.addEventListener('keydown, closeModalByEscape');
+window.addEventListener('keydown', closeModalByEscape);
 function closeModalByEscape(e) {
     if (e.code === 'Escape') {
         modal.close();
