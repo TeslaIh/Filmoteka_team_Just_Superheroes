@@ -2,40 +2,41 @@ const filmModalOpen = document.querySelector('[data-modal-open]');
 const filmModalCntnr = document.querySelector('[data-modal-container]');
 
 filmModalOpen.addEventListener('click', function modalRender(evt) {
-    filmModalCntnr.classList.add('show-modal');
-    filmFinder(evt);
+  filmModalCntnr.classList.add('show-modal');
+  filmFinder(evt);
 });
 
-function filmFinder(evt) { 
-    evt.preventDefault();
-    let filmCardSelector = "";
-    
-    if (evt.target.nodeName === "UL") {
-        return;
-    };
-    
-    if (evt.target.nodeName !== "LI") {
-        filmCardSelector = evt.target.parentNode;
-    } else {
-        filmCardSelector = evt.target; 
-    };
+function filmFinder(evt) {
+  evt.preventDefault();
+  let filmCardSelector = '';
 
-    const filmTitle = filmCardSelector.querySelector('.card-set_text');
-    const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray'))
-        .find(film => film.title === filmTitle.textContent);
+  if (evt.target.nodeName === 'UL') {
+    return;
+  }
 
-    const refs = {
-        poster: filmsInfoArray.poster_path,
-        title: filmsInfoArray.title,
-        vote: filmsInfoArray.vote_average,
-        votes: filmsInfoArray.vote_count,
-        popularity: filmsInfoArray.popularity,
-        original_title: filmsInfoArray.original_title,
-        genre: filmsInfoArray.genre_ids,
-        overview: filmsInfoArray.overview,
-    };
+  if (evt.target.nodeName !== 'LI') {
+    filmCardSelector = evt.target.parentNode;
+  } else {
+    filmCardSelector = evt.target;
+  }
 
-    const modalHTML = `
+  const filmTitle = filmCardSelector.querySelector('.card-set_text');
+  const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray')).find(
+    film => film.title === filmTitle.textContent,
+  );
+
+  const refs = {
+    poster: filmsInfoArray.poster_path,
+    title: filmsInfoArray.title,
+    vote: filmsInfoArray.vote_average,
+    votes: filmsInfoArray.vote_count,
+    popularity: filmsInfoArray.popularity,
+    original_title: filmsInfoArray.original_title,
+    genre: filmsInfoArray.genre_ids,
+    overview: filmsInfoArray.overview,
+  };
+
+  const modalHTML = `
     <div class="film-modal">
         <div class="film-modal_poster">
             <img alt="${refs.title}" src= "https://image.tmdb.org/t/p/w780${refs.poster}"/>
@@ -76,11 +77,11 @@ function filmFinder(evt) {
     </div>
     `;
 
-    filmModalCntnr.innerHTML = modalHTML;
+  filmModalCntnr.innerHTML = modalHTML;
 
-    const filmModalClose = document.querySelector('[data-modal-close]');
+  const filmModalClose = document.querySelector('[data-modal-close]');
 
-    filmModalClose.addEventListener('click', () => {
-        filmModalCntnr.classList.remove('show-modal');
-    });
-};
+  filmModalClose.addEventListener('click', () => {
+    filmModalCntnr.classList.remove('show-modal');
+  });
+}
