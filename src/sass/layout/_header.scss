@@ -50,6 +50,8 @@
 
   border: none;
 
+  @include transition1(box-shadow);
+
   &:hover,
   &:focus {
     outline: none;
@@ -82,6 +84,7 @@
 }
 
 .header__input {
+  position: relative;
   max-width: 280px;
   width: 100%;
 
@@ -113,10 +116,13 @@
   }
 }
 
-.header__search-icon {
+.header__form-btn {
   position: absolute;
   top: 5px;
   right: 0;
+  padding: 7px;
+  background-color: transparent;
+  border: 0;
 
   @media screen and (min-width: 768px) {
     right: 140px;
@@ -124,6 +130,29 @@
 
   @media screen and (min-width: 1024px) {
     right: 273px;
+  }
+}
+
+.header__search-icon {
+  position: absolute;
+  top: 5px;
+  right: 0;
+
+  stroke: $text-secondary;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    right: 140px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    right: 273px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    stroke: $accent-color;
   }
 }
 
@@ -144,6 +173,14 @@
   background-color: transparent;
   border: 1px solid $text-secondary;
   border-radius: 5px;
+
+  @include transition2(background-color, border-color);
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $accent-color;
+  }
 }
 
 .button__watched {
