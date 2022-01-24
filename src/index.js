@@ -9,3 +9,4 @@ import './js/modal-btn';
 import './js/themeSwitcher';
 import './js/arrowBtn';
 import './js/team-cards';
+import './js/clear-local-stor';
