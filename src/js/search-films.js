@@ -27,19 +27,28 @@ function onSearchFilms(event) {
       const clearHtml = () => (refs.galleryList.innerHTML = '');
       sessionStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
 
-      renderGalleryFilms(JSON.parse(sessionStorage.getItem('FilmsArray')));
+     await  renderGalleryFilms(JSON.parse(sessionStorage.getItem('FilmsArray')));
       if (total_results < 1) {
         clearSearhInput();
-        getAllarmText();
         apiServ.reset;
-        apiServ.getFilmsArray();
-        renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray')));
+        clearFilmsGallery()
+        
+        getAllarmText();
+         
+        // addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
       } else {
-        apiServ.getSearchFilms(apiServ.query, apiServ.page);
-        sessionStorage.setItem('GenresArray', JSON.stringify(res.data.genres));
-        sessionStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
-        getGenres();
-        await addFilmToDom(renderGalleryFilms(JSON.parse(sessionStorage.getItem('FilmsArray'))));
+         localStorage.setItem('FilmsArray', JSON.stringify(res.data.results))
+      
+        apiServ.getSearchFilms(apiServ.query, apiServ.page).then(async function (res) {
+          return res
+        }).then(async function (res) {
+          
+          sessionStorage.setItem('GenresArray', JSON.stringify(res.data.genres));
+         sessionStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
+         await  getGenres();
+         await addFilmToDom(renderGalleryFilms(JSON.parse(sessionStorage.getItem('FilmsArray'))));
+     
+        })  
       }
     });
   }
@@ -108,20 +117,10 @@ function workForGenre(array, secArray) {
   }
 }
 
+
 function getAllarmText() {
-  //  alert("ups");
-  // clearHtml();
-  // const allarmText = document.createElement('p');
-  //   // refs.allarmTextEl = document.querySelector('.allarm-text');
-  //   allarmText.classList.add('visually-hidden');
-  //   allarmText.textContent = 'ups!';
-  // HTMLFormControlsCollection.log()
-  //   allarmText.after(text);
-  //   // allarmText.innerHTML
-  //   refs.headerSearchEl.after(allarmText);
-  //   // нужен в разметке доп. div с классом
-  //   refs.allarmTextEl.classList.add('visually-hidden');
-  //   setTimeout(function () {
-  //     refs.allarmTextEl.classList.remove('visually-hidden');
-  //   }, 2000);
+   refs.allarmTextEl.classList.remove("visually-hidden")
+       setTimeout(function () {
+       refs.allarmTextEl.classList.add("visually-hidden") 
+     }, 2000);
 }
