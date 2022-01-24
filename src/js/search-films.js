@@ -1,6 +1,6 @@
 //поиск для инпута в хэдэре header__input
 import ApiService from './api-service';
-
+import { clearLocaLStor } from "./clear-local-stor"
 import cardFilmTpl from '../templates/card-films.hbs';
 import debounce from 'lodash-es/debounce';
 // const Handlebars = require('handlebars');
