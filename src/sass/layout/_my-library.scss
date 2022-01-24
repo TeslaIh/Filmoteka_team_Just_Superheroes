@@ -1,9 +1,13 @@
-.watched--bg,
-.queue--bg {
+.watched--bg{
   background-size: contain;
   height: 60vh;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 
   background-image: url('../images/my-library/bg-library.png');
+
+//   @media screen and (min-width: 768px) {
+//   height: 65vh;
+// }
+
 }
