@@ -27,6 +27,7 @@ function onSearchFilms(e) {
     return;
   }
   apiServ.textQuery = inputTextQwery;
+  apiServ.numbPage = 1;
   apiServ.getSearchFilms().then(async function (res) {
     if (!res.data.total_results) {
       refs.searchInputEl.value = '';
