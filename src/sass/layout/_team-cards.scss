@@ -15,6 +15,7 @@
   opacity: 1;
   visibility: visible;
 }
+
 .winup:target .winup__content {
   transform: translate(0px, 0px);
   opacity: 1;
@@ -27,6 +28,7 @@
   top: 0;
   left: 0;
 }
+
 .winup__body {
   min-height: 100%;
   display: flex;
@@ -34,47 +36,37 @@
   justify-content: center;
   padding: 30px 10px;
 }
+
 .winup__content {
+  position: relative;
+  padding: 10px;
+
   background-color: white;
   color: black;
-  max-width: 900px;
-  height: 896px;
-  padding: 10px;
-  position: relative;
   border-radius: 15px;
   opacity: 0;
   transform: translate(-100%, 0px);
   transition: all 0.8s ease 0s;
-}
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .winup__content {
-    margin: auto;
+
+  @media screen and (min-width: 768px) {
     width: 628px;
-    height: 1175px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 900px;
   }
 }
-@media screen and (min-width: 1024px) {
-  .winup__content {
-    min-width: 900px;
-  }
-}
-@media screen and (max-width: 767px) {
-  .winup__content {
-    padding-left: 10px;
-    padding-right: 25px;
-    height: 1600px;
-  }
-}
+
 .button {
   position: absolute;
-  position: absolute;
-  right: 10px;
+  right: 0;
   top: 15px;
   font-size: 20px;
   color: black;
   stroke: 4px;
   width: 35px;
   height: 30px;
+
   &:hover {
     color: #ff6b08;
   }
@@ -86,30 +78,21 @@ img {
 }
 
 .team__list {
-  list-style: none;
+  padding-bottom: 60px;
   justify-content: end;
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-row-gap: 4%;
-}
-@media screen and (min-width: 767px) and (max-width: 1023px) {
-  .team__list {
-    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5%;
+  grid-row-gap: 2%;
+
+  @media screen and (min-width: 767px) {
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-@media screen and (max-width: 766px) {
-  .team__list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5%;
-  }
-}
-@media screen and (max-width: 767px) {
-  .team__list {
-    grid-row-gap: 2%;
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 4%;
   }
 }
 
@@ -119,18 +102,21 @@ img {
   margin-bottom: 20px;
   margin-top: 20px;
 }
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .title-wrapper {
     margin-bottom: 30px;
     margin-top: 30px;
   }
 }
+
 @media screen and (min-width: 1024px) {
   .title-wrapper {
     margin-top: 30px;
     margin-bottom: 30px;
   }
 }
+
 .team__title {
   font-size: 20px;
 
@@ -148,33 +134,39 @@ img {
     }
   }
 }
+
 .under {
   color: #ff6b08;
   font-weight: bold;
   font-size: 18px;
 }
+
 .goitLogo {
   height: 24px;
   width: 65px;
   margin-right: 10px;
+
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     height: 23px;
     width: 65px;
     margin-right: 15px;
   }
+
   @media screen and (min-width: 1024px) {
     height: 24px;
     width: 80px;
     margin-right: 15px;
   }
 }
+
 .team {
   border-radius: 15px;
-  padding-bottom: 5%;
+  margin-bottom: 5%;
   justify-content: center;
 }
+
 .team-discription {
   font-weight: bold;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 }

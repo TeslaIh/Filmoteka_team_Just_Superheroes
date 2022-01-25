@@ -115,6 +115,7 @@ export default class BtnModal {
     if (localStorage.getItem('LocWatched').length === 2) {
       localStorage.removeItem('LocWatched');
     }
+
     modalBtnW.removeEventListener('click', this.btnWatchedRemove);
     modalBtnW.addEventListener('click', this.btnWatchedAdd);
   }
