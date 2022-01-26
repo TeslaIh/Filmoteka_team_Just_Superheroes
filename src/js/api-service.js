@@ -14,7 +14,6 @@ export default class ApiSettings {
       params: {
         api_key: 'f792bc0e541efe7531ca1576bffe5aa2',
         page: `${this.page}`,
-        query: `${this.query}`,
       },
     });
   }
@@ -57,10 +56,6 @@ export default class ApiSettings {
   }
   set textQuery(newQuery) {
     this.query = newQuery;
-  }
-  get reset() {
-  this.page = 1;
-    this.query = "";
   }
 
 }
