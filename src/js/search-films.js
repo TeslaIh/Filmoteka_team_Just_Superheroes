@@ -4,6 +4,7 @@ import Pagination from 'tui-pagination';
 const pagination = new Pagination('pagination', options);
 import { options } from './gallery-pagination';
 import clearLocaLStor from './clear-local-stor';
+import { result } from 'lodash-es';
 // clearLocaLStor ("FilmsArray") вызывать при необходимости
 // import cardFilmTpl from '../templates/card-films.hbs';
 // const Handlebars = require('handlebars');
@@ -24,6 +25,14 @@ function onSearchFilms(e) {
   const clearHtml = () => (refs.galleryList.innerHTML = '');
   if (!inputTextQwery) {
     getAllarmText();
+    apiServ.getFilmsArray().then(async function (res) {
+      let { page, results, total_pages, total_results } = res.data;
+      localStorage.setItem('FilmsArray', JSON.stringify(results));
+      await getGenresFromLocalStorage();
+      await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
+      await definePaginationParam(results.length, total_results);
+      await pagination.reset();
+    });
     return;
   }
   apiServ.textQuery = inputTextQwery;
@@ -31,39 +40,53 @@ function onSearchFilms(e) {
   apiServ.getSearchFilms().then(async function (res) {
     if (!res.data.total_results) {
       refs.searchInputEl.value = '';
-      pagination.reset();
       getAllarmText();
       apiServ.reset;
       clearHtml();
-      console.log(apiServ.query);
-      console.log(JSON.parse(localStorage.getItem('FilmsArray')));
-      await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
+      apiServ.getFilmsArray().then(async function (res) {
+        let { page, results, total_pages, total_results } = res.data;
+        localStorage.setItem('FilmsArray', JSON.stringify(results));
+        await getGenresFromLocalStorage();
+        await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
+        await definePaginationParam(results.length, total_results);
+        await pagination.reset();
+      });
       return;
     }
     let { page, results, total_pages, total_results } = res.data;
-    let NumbersItemOnPage = res.data.results.length;
     clearHtml();
-    localStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
+    localStorage.setItem('FilmsArray', JSON.stringify(results));
     await getGenresFromLocalStorage();
     await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
     document.querySelector('.spinner').style.display = 'none';
-    await definePaginationParam(NumbersItemOnPage, total_results);
+    await definePaginationParam(results.length, total_results);
     await pagination.reset();
   });
   pagination.on('afterMove', event => {
     const currentPage = event.page;
     apiServ.numbPage = currentPage;
     clearHtml();
-    apiServ.getSearchFilms().then(async function (res) {
-      console.log(res);
-      let { page, results, total_pages, total_results } = res.data;
-      let NumbersItemOnPage = res.data.results.length;
-      localStorage.setItem('FilmsArray', JSON.stringify(res.data.results));
-      await getGenresFromLocalStorage();
-      await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
-      await definePaginationParam(NumbersItemOnPage, total_results);
-    });
+    if (refs.searchInputEl.value === '') {
+      apiServ.getFilmsArray().then(async function (res) {
+        console.log(res);
+        let { page, results, total_pages, total_results } = res.data;
+        localStorage.setItem('FilmsArray', JSON.stringify(results));
+        await getGenresFromLocalStorage();
+        await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
+        await definePaginationParam(results.length, total_results);
+      });
+    } else {
+      apiServ.getSearchFilms().then(async function (res) {
+        console.log(res);
+        let { page, results, total_pages, total_results } = res.data;
+        localStorage.setItem('FilmsArray', JSON.stringify(results));
+        await getGenresFromLocalStorage();
+        await addFilmToDom(renderGalleryFilms(JSON.parse(localStorage.getItem('FilmsArray'))));
+        await definePaginationParam(results.length, total_results);
+      });
+    }
   });
+
   function definePaginationParam(NumTotalPages, NumTotalResults) {
     pagination.setItemsPerPage(NumTotalPages);
     pagination.setTotalItems(NumTotalResults);
