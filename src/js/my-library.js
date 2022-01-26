@@ -23,9 +23,11 @@ function onLibraryBtnClick(e) {
   const arrayWatched = JSON.parse(localStorage.getItem('LocWatched'));
 
   if (localStorage.getItem('LocWatched') !== null) {
+    refs.watchedEl.classList.add('accent-filling');
+    refs.queueEl.classList.remove('accent-filling');
     return renderGalleryFilms(arrayWatched);
   }
-
+  
   refs.sectionEl.classList.add('watched--bg');
 }
 
@@ -59,24 +61,40 @@ function renderGalleryFilms(array) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
 }
 
-function onWatchedBtnClick() {
+function onWatchedBtnClick(e) {
   refs.gallery.innerHTML = '';
   const arrayWatched = JSON.parse(localStorage.getItem('LocWatched'));
-
+  
   if (localStorage.getItem('LocWatched') !== null) {
+
+    refs.watchedEl.classList.add('accent-filling');
+    refs.queueEl.classList.remove('accent-filling');
+
     refs.sectionEl.classList.remove('watched--bg');
     return renderGalleryFilms(arrayWatched);
   }
   refs.sectionEl.classList.add('watched--bg');
 }
 
-function onQueueBtnClick() {
+function onQueueBtnClick(e) {
   refs.gallery.innerHTML = '';
   const arrayQueue = JSON.parse(localStorage.getItem('LocQueue'));
 
   if (localStorage.getItem('LocQueue') !== null) {
+
+    refs.queueEl.classList.add('accent-filling');
+    refs.watchedEl.classList.remove('accent-filling');
+
     refs.sectionEl.classList.remove('watched--bg');
     return renderGalleryFilms(arrayQueue);
   }
   refs.sectionEl.classList.add('watched--bg');
 }
+
+export { onWatchedBtnClick, onQueueBtnClick };
+  
+// if (arrayQueue.length !== null ||0 < arrayQueue.length < 4) {
+  //   refs.sectionEl.classList.add('library--size');
+  // } else {
+  //   refs.sectionEl.classList.remove('library--size');
+  // }
