@@ -88,8 +88,8 @@ const e={LIGHT:"light-theme",DARK:"dark-theme"},t={themeSwitchToggle:document.qu
 },{}],"bVN5":[function(require,module,exports) {
 const o=document.querySelector(".arrow-btn");window.onscroll=function(){window.pageYOffset>400?o.style.display="block":o.style.display="none"};
 },{}],"YtuZ":[function(require,module,exports) {
-function e(n){"Escape"===n.code&&(modal.close(),window.removeEventListener("keydown",e))}window.addEventListener("keydown",e);
+
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/search-films"),require("./js/films-gallery"),require("./js/my-library"),require("./js/header-bg"),require("./js/film-modal"),require("./js/modal-btn"),require("./js/themeSwitcher"),require("./js/arrowBtn"),require("./js/team-cards"),require("./js/clear-local-stor");
 },{"./sass/main.scss":"clu1","./js/search-films":"ulgu","./js/films-gallery":"iMX8","./js/my-library":"L1LD","./js/header-bg":"yDAf","./js/film-modal":"v6dG","./js/modal-btn":"JAtQ","./js/themeSwitcher":"qgSZ","./js/arrowBtn":"bVN5","./js/team-cards":"YtuZ","./js/clear-local-stor":"FfUI"}]},{},["Focm"], null)
-//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.528ce16c.js.map
+//# sourceMappingURL=/Filmoteka_team_Just_Superheroes/src.97e6750f.js.map
