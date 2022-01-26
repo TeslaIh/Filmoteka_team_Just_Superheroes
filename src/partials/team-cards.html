@@ -1,4 +1,4 @@
-<div id="winup" class="winup">
+<div id="winup" class="winup" data-backdrop="static" data-keyboard="false"> 
   <a href="#footer" class="winup__area"></a>
   <div class="winup__body">
     <div class="winup__content">
@@ -53,7 +53,7 @@
           </a>
         </li>
         <li class="team-card-list-item">
-          <img class="team" src="/images/team/super_temp.png" width="152" alt="team-member" />
+          <img class="team" src="/images/team/Alex.jpg" width="152" alt="team-member" />
           <h2 class="team-name">
             <span class="under">*</span> Alexander <span class="under">*</span>
           </h2>
@@ -73,7 +73,7 @@
           </a>
         </li>
         <li class="team-card-list-item">
-          <img class="team" src="/images/team/super_temp.png" width="152" alt="team-member" />
+          <img class="team" src="/images/team/Dima K.jpg" width="152" alt="team-member" />
           <h2 class="team-name">
             <span class="under">*</span> Dmytro <span class="under">*</span>
           </h2>
@@ -100,3 +100,11 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('keydown', closeTeamModal);
+    function closeTeamModal(e) {
+    if(e.key === 'Escape') 
+    document.getElementById('winup').hidden = 1;
+    document.removeEventListener('keydown', closeTeamModal);
+  }; 
+</script>
