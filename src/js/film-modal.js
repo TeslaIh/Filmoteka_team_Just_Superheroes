@@ -10,19 +10,38 @@ filmModalOpen.addEventListener('click', function modalRender(evt) {
 function filmFinder(evt) {
   evt.preventDefault();
   let filmCardSelector = '';
-
-  
+  let filmsInfoArray = '';
 
   if (evt.target.nodeName === 'UL') {
     return;
   } else {
     filmCardSelector = evt.target.parentNode;
-  };
+  }
+  const LocFilmsArray = JSON.parse(localStorage.getItem('FilmsArray')).find(
+      film => film.title === filmCardSelector.querySelector('.card-set_text').textContent,
+    );
+  const LocWatched = JSON.parse(localStorage.getItem('LocWatched'));
+  const LocQueue = JSON.parse(localStorage.getItem('LocQueue'));
 
-  const filmsInfoArray = JSON.parse(localStorage.getItem('FilmsArray')).find(
-    film => film.title === filmCardSelector.querySelector('.card-set_text').textContent,
-  );
-  const changeBtnModal = new BtnModal(filmsInfoArray.title);
+  if (LocFilmsArray !== undefined) {
+    filmsInfoArray = LocFilmsArray;
+  }
+  
+  if (LocQueue !== null && filmsInfoArray === "") {
+    console.log(LocQueue);
+    filmsInfoArray = LocQueue.find(
+      film => film.title === filmCardSelector.querySelector('.card-set_text').textContent,
+    );
+  }
+  
+  if (LocWatched !== null && (filmsInfoArray === undefined  || filmsInfoArray === "") ) {
+    filmsInfoArray = LocWatched.find(
+      film => {
+        return (film.title === filmCardSelector.querySelector('.card-set_text').textContent)
+      }
+    );
+  }
+
   const refs = {
     poster: filmsInfoArray.poster_path,
     title: filmsInfoArray.title,
@@ -33,9 +52,10 @@ function filmFinder(evt) {
     genre: filmsInfoArray.genre_ids,
     overview: filmsInfoArray.overview,
   };
+  const changeBtnModal = new BtnModal(refs.title);
 
   let imgNotFound = 'https://kinomaiak.ru/wp-content/uploads/2018/02/noposter.png';
-  
+
   if (refs.poster !== null) {
     imgNotFound = `https://image.tmdb.org/t/p/w780${refs.poster}`;
   }
@@ -60,7 +80,11 @@ function filmFinder(evt) {
             <table class="film-modal_tbl">
                 <tr>
                     <td class="film-modal_tbl-row">Vote / Votes</td>
-                    <td class="film-modal_tbl-d"> <span class="film-modal_tbl-d-vote">${refs.vote} </span> / <span class="film-modal_tbl-d-votes">${refs.votes}</span></span></td>
+                    <td class="film-modal_tbl-d"> <span class="film-modal_tbl-d-vote">${
+                      refs.vote
+                    } </span> / <span class="film-modal_tbl-d-votes">${
+    refs.votes
+  }</span></span></td>
                 </tr>
                 <tr>
                     <td class="film-modal_tbl-row">Popularity</td>
@@ -90,12 +114,12 @@ function filmFinder(evt) {
     `;
 
   filmModalCntnr.innerHTML = modalHTML;
-  
+
   filmModalCntnr.classList.add('show-modal');
-  
+
   changeBtnModal.addFuncListener();
-  
-//////////////Закрытие модального окна///////////
+
+  //////////////Закрытие модального окна///////////
   const filmModalClose = document.querySelector('[data-modal-close]');
 
   const closeModalByESC = evt => {
