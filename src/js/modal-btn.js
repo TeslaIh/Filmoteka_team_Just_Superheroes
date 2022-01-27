@@ -20,8 +20,6 @@ export default class BtnModal {
     const modalBtnQ = document.getElementById('queue');
 
     if (LocWatched) {
-      
-
       if (LocWatched.find(({ title }) => title === this.film)) {
         modalBtnW.textContent = 'Remove to Watched';
         modalBtnW.addEventListener('click', this.btnWatchedRemove);
@@ -49,11 +47,26 @@ export default class BtnModal {
   btnWatchedAdd() {
     const LocFilmsArray = JSON.parse(localStorage.getItem('FilmsArray'));
     const LocWatched = JSON.parse(localStorage.getItem('LocWatched'));
+    const LocQueue = JSON.parse(localStorage.getItem('LocQueue'));
 
-    const cardInWatched = document.querySelector('.header__library');
+    const pageHome = document.querySelector('.header__home');
+    const pageWatched = document.querySelector('.button_watched accent-filling');
+    const pageQueue = document.querySelector('.button_queue accent-filling');
+
+    let dataFromLoc = '';
+
+    if (pageWatched) {
+      dataFromLoc = LocWatched;
+    }
+    if (pageQueue) {
+      dataFromLoc = LocQueue;
+    }
+    if (pageHome) {
+      dataFromLoc = LocFilmsArray;
+    }
 
     const modalBtnW = document.getElementById('watched');
-    const dataInLocArray = LocFilmsArray.find(({ title }) => {
+    const dataInLocArray = dataFromLoc.find(({ title }) => {
       return title === this.film;
     });
 
@@ -71,7 +84,7 @@ export default class BtnModal {
     localStorage.setItem('LocWatched', JSON.stringify(LocWatched));
     modalBtnW.textContent = 'Remove to Watched';
 
-    if (cardInWatched) {
+    if (pageWatched) {
       onWatchedBtnClick();
     }
 
@@ -81,12 +94,26 @@ export default class BtnModal {
 
   btnQueueAdd() {
     const LocFilmsArray = JSON.parse(localStorage.getItem('FilmsArray'));
+    const LocWatched = JSON.parse(localStorage.getItem('LocWatched'));
     const LocQueue = JSON.parse(localStorage.getItem('LocQueue'));
-    const modalBtnQ = document.getElementById('queue');
 
-    const cardInQueue = document.querySelector('.header__library');
+    const pageHome = document.querySelector('.header__home');
+    const pageWatched = document.querySelector('.button_watched accent-filling');
+    const pageQueue = document.querySelector('.button_queue accent-filling');
 
-    const dataInLocArray = LocFilmsArray.find(({ title }) => {
+    let dataFromLoc = '';
+
+    if (pageWatched) {
+      dataFromLoc = LocWatched;
+    }
+    if (pageQueue) {
+      dataFromLoc = LocQueue;
+    }
+    if (pageHome) {
+      dataFromLoc = LocFilmsArray;
+    }
+    
+    const dataInLocArray = dataFromLoc.find(({ title }) => {
       return title === this.film;
     });
 
@@ -104,7 +131,7 @@ export default class BtnModal {
     localStorage.setItem('LocQueue', JSON.stringify(LocQueue));
     modalBtnQ.textContent = 'Remove to Queue';
 
-    if (cardInQueue) {
+    if (pageQueue) {
       onQueueBtnClick();
     }
 
@@ -112,13 +139,13 @@ export default class BtnModal {
     modalBtnQ.addEventListener('click', this.btnQueueRemove);
   }
 
-  // =================== Function Add =================
+  // =================== Functions Remove =================
 
   btnWatchedRemove() {
     const LocWatched = JSON.parse(localStorage.getItem('LocWatched'));
     const modalBtnW = document.getElementById('watched');
 
-    const cardInWatched = document.querySelector('.header__library');
+    const pageWatched = document.querySelector('.button_watched accent-filling');
 
     const filterDataW = LocWatched.filter(({ title }) => {
       return title !== this.film;
@@ -131,7 +158,7 @@ export default class BtnModal {
       localStorage.removeItem('LocWatched');
     }
 
-    if (cardInWatched) {
+    if (pageWatched) {
       onWatchedBtnClick();
     }
 
@@ -143,7 +170,7 @@ export default class BtnModal {
     const LocQueue = JSON.parse(localStorage.getItem('LocQueue'));
     const modalBtnQ = document.getElementById('queue');
 
-    const cardInQueue = document.querySelector('.header__library');
+    const pageQueue = document.querySelector('.button_queue accent-filling');
 
     const filterDataQ = LocQueue.filter(({ title }) => {
       return title !== this.film;
@@ -156,10 +183,10 @@ export default class BtnModal {
       localStorage.removeItem('LocQueue');
     }
 
-    if (cardInQueue) {
+    if (pageQueue) {
       onQueueBtnClick();
     }
-    
+
     modalBtnQ.removeEventListener('click', this.btnQueueRemove);
     modalBtnQ.addEventListener('click', this.btnQueueAdd);
   }
