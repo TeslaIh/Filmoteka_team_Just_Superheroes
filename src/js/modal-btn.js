@@ -23,7 +23,7 @@ export default class BtnModal {
       
 
       if (LocWatched.find(({ title }) => title === this.film)) {
-        modalBtnW.textContent = 'Remove to Watched';
+        modalBtnW.textContent = 'Remove from Watched';
         modalBtnW.addEventListener('click', this.btnWatchedRemove);
       } else {
         modalBtnW.addEventListener('click', this.btnWatchedAdd);
@@ -34,7 +34,7 @@ export default class BtnModal {
 
     if (LocQueue) {
       if (LocQueue.find(({ title }) => title === this.film)) {
-        modalBtnQ.textContent = 'Remove to Queue';
+        modalBtnQ.textContent = 'Remove from Queue';
         modalBtnQ.addEventListener('click', this.btnQueueRemove);
       } else {
         modalBtnQ.addEventListener('click', this.btnQueueAdd);
@@ -69,7 +69,7 @@ export default class BtnModal {
 
     LocWatched.push(dataInLocArray);
     localStorage.setItem('LocWatched', JSON.stringify(LocWatched));
-    modalBtnW.textContent = 'Remove to Watched';
+    modalBtnW.textContent = 'Remove from Watched';
 
     if (cardInWatched) {
       onWatchedBtnClick();
@@ -92,7 +92,7 @@ export default class BtnModal {
 
     if (!LocQueue) {
       localStorage.setItem('LocQueue', JSON.stringify([dataInLocArray]));
-      modalBtnQ.textContent = 'Remove to Queue';
+      modalBtnQ.textContent = 'Remove from Queue';
 
       modalBtnQ.removeEventListener('click', this.btnQueueAdd);
       modalBtnQ.addEventListener('click', this.btnQueueRemove);
@@ -102,7 +102,7 @@ export default class BtnModal {
 
     LocQueue.push(dataInLocArray);
     localStorage.setItem('LocQueue', JSON.stringify(LocQueue));
-    modalBtnQ.textContent = 'Remove to Queue';
+    modalBtnQ.textContent = 'Remove from Queue';
 
     if (cardInQueue) {
       onQueueBtnClick();
