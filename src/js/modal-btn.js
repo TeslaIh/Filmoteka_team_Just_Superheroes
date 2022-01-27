@@ -59,7 +59,7 @@ export default class BtnModal {
 
     if (!LocWatched) {
       localStorage.setItem('LocWatched', JSON.stringify([dataInLocArray]));
-      modalBtnW.textContent = 'Remove to Watched';
+      modalBtnW.textContent = 'Remove from Watched';
 
       modalBtnW.removeEventListener('click', this.btnWatchedAdd);
       modalBtnW.addEventListener('click', this.btnWatchedRemove);
