@@ -113,6 +113,7 @@ export default class BtnModal {
       dataFromLoc = LocFilmsArray;
     }
     
+    const modalBtnQ = document.getElementById('queue');
     const dataInLocArray = dataFromLoc.find(({ title }) => {
       return title === this.film;
     });
