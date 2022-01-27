@@ -50,8 +50,8 @@ export default class BtnModal {
     const LocQueue = JSON.parse(localStorage.getItem('LocQueue'));
 
     const pageHome = document.querySelector('.header__home');
-    const pageWatched = document.querySelector('.button__watched accent-filling');
-    const pageQueue = document.querySelector('.button__queue accent-filling');
+    const pageWatched = document.getElementsByClassName('.button__watched accent-filling');
+    const pageQueue = document.getElementsByClassName('.button__queue accent-filling');
 
     let dataFromLoc = '';
 
@@ -98,8 +98,8 @@ export default class BtnModal {
     const LocQueue = JSON.parse(localStorage.getItem('LocQueue'));
 
     const pageHome = document.querySelector('.header__home');
-    const pageWatched = document.querySelector('.button__watched accent-filling');
-    const pageQueue = document.querySelector('.button__queue accent-filling');
+    const pageWatched = document.getElementsByClassName('.button__watched accent-filling');
+    const pageQueue = document.getElementsByClassName('.button__queue accent-filling');
 
     let dataFromLoc = '';
 
@@ -171,7 +171,7 @@ export default class BtnModal {
     const LocQueue = JSON.parse(localStorage.getItem('LocQueue'));
     const modalBtnQ = document.getElementById('queue');
 
-    const pageQueue = document.querySelector('.button__queue accent-filling');
+    const pageQueue = document.getElementsByClassName('.button__queue accent-filling');
 
     const filterDataQ = LocQueue.filter(({ title }) => {
       return title !== this.film;
